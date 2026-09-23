@@ -42,6 +42,15 @@ If a fault is detected during this process such as the precharge taking too long
 this section goes over what each subsystem does in the board 
 ## Main MCU
 <img width="1244" height="1120" alt="image" src="https://github.com/user-attachments/assets/3f2d1e88-a15e-48af-af63-2e948920c732" />
+The Blue Pill (STM32F103C8T6) was selected as the microcontroller for this board over alternatives such as the Arduino Nano/Uno and the STM32 Nucleo/Discovery development boards. 
+Compared to Arduino-based boards, the Blue Pill offers a faster clock speed, more GPIO pins, and native CAN bus support (via its bxCAN peripheral), which is essential for communicating with the rest of the vehicle's control system without relying on an external add-on module. 
+Compared to Nucleo/Discovery boards, the Blue Pill is significantly cheaper and smaller, making it more practical for integration onto a custom PCB rather than being used as a standalone development board. 
+
+While the Blue Pill has known drawbacks such as inconsistent quality control across clone manufacturers and a USB implementation that often requires rework for reliable use these were considered acceptable trade-offs given the team's budget constraints, the large amount of open-source documentation and community troubleshooting resources available, and the ease of sourcing replacement units quickly if a board fails.
+## speaker controler 
+
+<img width="1683" height="815" alt="image" src="https://github.com/user-attachments/assets/6665681f-55f6-488e-8baf-0fefb92062f3" />
+Similar to the Blue Pill, the DFR0299 (DFRobot DFPlayer Mini MP3 module) was chosen because it is cheap and easy to source. It also gives the team the ability to play custom sounds for the RTDS (Ready-to-Drive Sound) rather than being limited to a simple buzzer tone, and additionally allows the team to play music through the same speaker during the off-season.
 
 
 
