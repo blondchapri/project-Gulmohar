@@ -1,4 +1,4 @@
-# Project Gulmohar
+<img width="1618" height="953" alt="image" src="https://github.com/user-attachments/assets/d831b3a6-ebd1-45b5-9409-95cfede11121" /># Project Gulmohar
 
 Gulmohar is a safety and general control circuit used for safe and reliable operation of the vehicle  
 everything in this project is designed according the rules provided in the 2027 [SAE BAJA Rule Book](https://www.bajasaeindia.org/upload/Resource/BAJA%20SAEINDIA%20RULEBOOK%202027_1782183585.pdf).<br/>
@@ -52,6 +52,30 @@ While the Blue Pill has known drawbacks such as inconsistent quality control acr
 
 <img width="1683" height="815" alt="image" src="https://github.com/user-attachments/assets/6665681f-55f6-488e-8baf-0fefb92062f3" />
 Similar to the Blue Pill, the DFR0299 (DFRobot DFPlayer Mini MP3 module) was chosen because it is cheap and easy to source. It also gives the team the ability to play custom sounds for the RTDS (Ready-to-Drive Sound) rather than being limited to a simple buzzer tone, and additionally allows the team to play music through the same speaker during the off-season.
+
+The module is connected to the MCU via UART for serial communication, along with four buttons two for volume control (up/down) and two for sound selection (next/previous sound). The speaker output is connected using an XT60 connector.
+## can transceiver
+<img width="1618" height="953" alt="image" src="https://github.com/user-attachments/assets/1d7e57a3-7c40-46bc-bdb7-1df127c7aa4c" />
+The SN65HVD230 was selected as the CAN transceiver for the board. It interfaces between the Blue Pill's CAN controller (bxCAN) and the physical CAN bus, converting the microcontroller's logic-level TX/RX signals into the differential CAN_H/CAN_L signaling required by the bus. It was chosen for its low cost, wide availability, and 3.3V logic compatibility, which matches the Blue Pill's native voltage level without requiring additional level-shifting circuitry.
+
+## trigger/control relayes 
+<img width="1559" height="555" alt="image" src="https://github.com/user-attachments/assets/61065512-766e-4305-a6d4-c2ecf8f2757c" />
+This subsystem is what actually controls and enables the high power components on the buggy. The SRD-05VDC-SL-C relays were selected for this role because they are cheap, widely available, and simple to work with, which made them a practical choice given the team's budget and timeline.
+
+The AIR (Accumulator Isolation Relay), TSAL (Tractive System Active Light), and precharge relay all operate on a 12V supply. Rather than switching the 12V supply side of each component directly, the board's relays are wired to complete each component's path to ground. In other words, each 12V component is permanently connected to its 12V source, and it only activates once its ground return path is completed through the relay's normally-open contact. This is commonly referred to as low-side switching.
+
+Each relay coil itself is a 5V coil, so it is powered from a separate 5V rail rather than directly from the Blue Pill's 3.3V logic. Since the Blue Pill's GPIO pins cannot supply enough current to drive the relay coil directly, each coil is switched using a BC847 NPN transistor. The MCU's GPIO pin drives the base of the BC847 (through a current-limiting resistor), which allows the transistor to switch the relay coil's ground connection on and off. When the GPIO output goes high, the BC847 turns on, completing the coil's circuit to ground, energizing the coil, and closing the relay contact — which in turn completes the 12V component's ground path and switches it on. A flyback diode is placed across each relay coil to protect the BC847 from the voltage spike generated when the coil is de-energized.
+
+In this approach low-side switching with an NPN transistor was chosen over high-side switching because it is simpler and cheaper to implement. High-side switching (controlling the 12V supply side instead) would require a PNP transistor or a MOSFET along with additional level-shifting circuitry to interface safely with the 3.3V logic of the Blue Pill, adding unnecessary cost and complexity.
+## 5V PSU
+
+<img width="722" height="491" alt="image" src="https://github.com/user-attachments/assets/ac51ceff-ce60-4279-a4d3-6c31f56fe6ca" />
+The 5V rail used to power the relay coils (and any other 5V logic on the board) is generated using an MP2338GTL-Z, a buck converter IC that steps the 12V battery input down to a regulated 5V output, capable of supplying up to 3A.
+
+A buck converter was chosen over a simple linear regulator (e.g., a 7805) for efficiency. A linear regulator dropping 12V to 5V would waste significant power as heat, especially under the combined current draw of multiple relay coils switching simultaneously, whereas a switching buck converter handles this same conversion far more efficiently, with less wasted power and less heat to manage on the board.
+
+The 3A output capacity also provides sufficient headroom to reliably power all relay coils simultaneously, along with any other 5V loads on the board, without the converter running near its limit.
+
 
 
 
