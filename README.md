@@ -81,7 +81,9 @@ A buck converter was chosen over a simple linear regulator (e.g., a 7805) for ef
 
 The 3A output capacity also provides sufficient headroom to reliably power all relay coils simultaneously, along with any other 5V loads on the board, without the converter running near its limit.
 
-## 
+## main accumulator and tractive system input
+<img width="1429" height="1124" alt="image" src="https://github.com/user-attachments/assets/1999c4b4-bb53-4dbb-9299-735823f1722e" />
+
 
 
 
