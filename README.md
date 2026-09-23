@@ -43,6 +43,7 @@ this section goes over what each subsystem does in the board
 ## Main MCU
 <img width="1244" height="1120" alt="image" src="https://github.com/user-attachments/assets/3f2d1e88-a15e-48af-af63-2e948920c732" />
 The Blue Pill (STM32F103C8T6) was selected as the microcontroller for this board over alternatives such as the Arduino Nano/Uno and the STM32 Nucleo/Discovery development boards.  
+
 Compared to Arduino-based boards, the Blue Pill offers a faster clock speed, more GPIO pins, and native CAN bus support (via its bxCAN peripheral), which is essential for communicating with the rest of the vehicle's control system without relying on an external add-on module.  
 Compared to Nucleo/Discovery boards, the Blue Pill is significantly cheaper and smaller, making it more practical for integration onto a custom PCB rather than being used as a standalone development board. 
 
