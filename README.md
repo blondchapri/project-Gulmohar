@@ -4,7 +4,8 @@ Gulmohar is a safety and general control circuit used for safe and reliable oper
 everything in this project is designed according the rules provided in the 2027 [SAE BAJA Rule Book](https://www.bajasaeindia.org/upload/Resource/BAJA%20SAEINDIA%20RULEBOOK%202027_1782183585.pdf).<br/>
 This project is heavily inspired/derived from [Michael Ruppe](https://github.com/michaelruppe/FSAE/tree/master/Precharge)'s work. Please go and show him some support he is literally the [GOAT](https://youtu.be/cnhg-fT3LRs?si=Fe791WXtpYPyJvJ2) <br/>
 this poject was developed for [Team Pegasus Racing](https://www.instagram.com/team_pegasus_racing/)
-![board image](image.png)
+<img width="1600" height="859" alt="image" src="https://github.com/user-attachments/assets/0f57c978-0606-4547-b101-d16efeb751ed" />
+
 # Basic Overview 
 After the startup sequence (check the rulebook for that), the board closes the precharge relay and begins reading voltage inputs from the main tractive accumulator and from the positive line after the precharge resistor.<br/>
 
@@ -40,7 +41,8 @@ If a fault is detected during this process such as the precharge taking too long
 # Operation
 this section goes over what each subsystem does in the board 
 ## Main MCU
-![MAIN MCU DEV BOARD](image-1.png)
+<img width="1244" height="1120" alt="image" src="https://github.com/user-attachments/assets/3f2d1e88-a15e-48af-af63-2e948920c732" />
+
 
 
 
