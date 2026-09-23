@@ -1,5 +1,3 @@
-<img width="1618" height="953" alt="image" src="https://github.com/user-attachments/assets/d831b3a6-ebd1-45b5-9409-95cfede11121" /># Project Gulmohar
-
 Gulmohar is a safety and general control circuit used for safe and reliable operation of the vehicle  
 everything in this project is designed according the rules provided in the 2027 [SAE BAJA Rule Book](https://www.bajasaeindia.org/upload/Resource/BAJA%20SAEINDIA%20RULEBOOK%202027_1782183585.pdf).<br/>
 This project is heavily inspired/derived from [Michael Ruppe](https://github.com/michaelruppe/FSAE/tree/master/Precharge)'s work. Please go and show him some support he is literally the [GOAT](https://youtu.be/cnhg-fT3LRs?si=Fe791WXtpYPyJvJ2) <br/>
