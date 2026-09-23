@@ -40,6 +40,7 @@ If a fault is detected during this process such as the precharge taking too long
 this section goes over what each subsystem does in the board 
 ## Main MCU
 <img width="1244" height="1120" alt="image" src="https://github.com/user-attachments/assets/3f2d1e88-a15e-48af-af63-2e948920c732" />
+
 The Blue Pill (STM32F103C8T6) was selected as the microcontroller for this board over alternatives such as the Arduino Nano/Uno and the STM32 Nucleo/Discovery development boards.  
 
 Compared to Arduino-based boards, the Blue Pill offers a faster clock speed, more GPIO pins, and native CAN bus support (via its bxCAN peripheral), which is essential for communicating with the rest of the vehicle's control system without relying on an external add-on module.  
@@ -49,15 +50,18 @@ While the Blue Pill has known drawbacks such as inconsistent quality control acr
 ## speaker controler 
 
 <img width="1683" height="815" alt="image" src="https://github.com/user-attachments/assets/6665681f-55f6-488e-8baf-0fefb92062f3" />
+
 Similar to the Blue Pill, the DFR0299 (DFRobot DFPlayer Mini MP3 module) was chosen because it is cheap and easy to source. It also gives the team the ability to play custom sounds for the RTDS (Ready-to-Drive Sound) rather than being limited to a simple buzzer tone, and additionally allows the team to play music through the same speaker during the off-season.
 
 The module is connected to the MCU via UART for serial communication, along with four buttons two for volume control (up/down) and two for sound selection (next/previous sound). The speaker output is connected using an XT60 connector.
 ## can transceiver
 <img width="1618" height="953" alt="image" src="https://github.com/user-attachments/assets/1d7e57a3-7c40-46bc-bdb7-1df127c7aa4c" />
+
 The SN65HVD230 was selected as the CAN transceiver for the board. It interfaces between the Blue Pill's CAN controller (bxCAN) and the physical CAN bus, converting the microcontroller's logic-level TX/RX signals into the differential CAN_H/CAN_L signaling required by the bus. It was chosen for its low cost, wide availability, and 3.3V logic compatibility, which matches the Blue Pill's native voltage level without requiring additional level-shifting circuitry.
 
 ## trigger/control relayes 
 <img width="1559" height="555" alt="image" src="https://github.com/user-attachments/assets/61065512-766e-4305-a6d4-c2ecf8f2757c" />
+
 This subsystem is what actually controls and enables the high power components on the buggy. The SRD-05VDC-SL-C relays were selected for this role because they are cheap, widely available, and simple to work with, which made them a practical choice given the team's budget and timeline.
 
 The AIR (Accumulator Isolation Relay), TSAL (Tractive System Active Light), and precharge relay all operate on a 12V supply. Rather than switching the 12V supply side of each component directly, the board's relays are wired to complete each component's path to ground. In other words, each 12V component is permanently connected to its 12V source, and it only activates once its ground return path is completed through the relay's normally-open contact. This is commonly referred to as low-side switching.
@@ -68,11 +72,14 @@ In this approach low-side switching with an NPN transistor was chosen over high-
 ## 5V PSU
 
 <img width="722" height="491" alt="image" src="https://github.com/user-attachments/assets/ac51ceff-ce60-4279-a4d3-6c31f56fe6ca" />
+
 The 5V rail used to power the relay coils (and any other 5V logic on the board) is generated using an MP2338GTL-Z, a buck converter IC that steps the 12V battery input down to a regulated 5V output, capable of supplying up to 3A.
 
 A buck converter was chosen over a simple linear regulator (e.g., a 7805) for efficiency. A linear regulator dropping 12V to 5V would waste significant power as heat, especially under the combined current draw of multiple relay coils switching simultaneously, whereas a switching buck converter handles this same conversion far more efficiently, with less wasted power and less heat to manage on the board.
 
 The 3A output capacity also provides sufficient headroom to reliably power all relay coils simultaneously, along with any other 5V loads on the board, without the converter running near its limit.
+
+## 
 
 
 
